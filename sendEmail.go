@@ -48,7 +48,9 @@ func main() {
 	router.HandleFunc("/send-email", handleSendEmail)
 
 	handler := c.Handler(router)
-	log.Fatal(http.ListenAndServe(":8080", handler))
+	port := os.Getenv("PORT")
+
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 
 }
 
