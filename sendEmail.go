@@ -73,13 +73,11 @@ func handleSendEmail(w http.ResponseWriter, r *http.Request) {
 	client.Username = username
 	client.Password = password
 	client.Encryption = mail.EncryptionSTARTTLS
-	client.Encryption = mail.EncryptionTLS
-	//client.Encryption = mail.EncryptionSSLTLS
-	//client.Encryption = mail.EncryptionSSL
-	//client.Encryption = mail.EncryptionNone
+	//client.Encryption = mail.EncryptionTLS
 	client.ConnectTimeout = connectTimeout
 	client.SendTimeout = sendTimeout
 	client.Authentication = mail.AuthLogin
+	client.Authentication = mail.AuthAuto
 
 	smtpClient, err := client.Connect()
 	if err != nil {
