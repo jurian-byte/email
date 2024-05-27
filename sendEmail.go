@@ -1,7 +1,6 @@
 package main
 
 import (
-	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -25,7 +24,6 @@ var (
 	port           = 587
 	username       = ""
 	password       = ""
-	encryptionType = mail.EncryptionSTARTTLS
 	connectTimeout = 10 * time.Second
 	sendTimeout    = 10 * time.Second
 )
@@ -74,13 +72,14 @@ func handleSendEmail(w http.ResponseWriter, r *http.Request) {
 	client.Port = port
 	client.Username = username
 	client.Password = password
-	client.Encryption = encryptionType
+	client.Encryption = mail.EncryptionSTARTTLS
+	client.Encryption = mail.EncryptionTLS
+	//client.Encryption = mail.EncryptionSSLTLS
+	//client.Encryption = mail.EncryptionSSL
+	//client.Encryption = mail.EncryptionNone
 	client.ConnectTimeout = connectTimeout
 	client.SendTimeout = sendTimeout
 	client.Authentication = mail.AuthLogin
-	client.TLSConfig = &tls.Config{
-		InsecureSkipVerify: true,
-	}
 
 	smtpClient, err := client.Connect()
 	if err != nil {
