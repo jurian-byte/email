@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -77,6 +78,9 @@ func handleSendEmail(w http.ResponseWriter, r *http.Request) {
 	client.ConnectTimeout = connectTimeout
 	client.SendTimeout = sendTimeout
 	client.Authentication = mail.AuthLogin
+	client.TLSConfig = &tls.Config{
+		InsecureSkipVerify: true,
+	}
 
 	smtpClient, err := client.Connect()
 	if err != nil {
