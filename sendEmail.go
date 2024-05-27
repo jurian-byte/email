@@ -9,7 +9,6 @@ import (
 
 	"os"
 
-	"github.com/joho/godotenv"
 	"github.com/rs/cors"
 	mail "github.com/xhit/go-simple-mail/v2"
 )
@@ -31,10 +30,6 @@ var (
 )
 
 func main() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 
 	username = os.Getenv("USERNAME_")
 	password = os.Getenv("PASSWORD_")
