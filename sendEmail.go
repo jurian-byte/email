@@ -92,11 +92,15 @@ func handleSendEmail(w http.ResponseWriter, r *http.Request) {
 
 	err = email.Send(smtpClient)
 	if err != nil {
+
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(map[string]string{"error": fmt.Sprintf("Error sending email: %v", err)})
+
 		return
 	}
+
+	fmt.Print(err)
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{"message": "Email sent successfully"})
