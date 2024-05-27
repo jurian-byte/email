@@ -44,7 +44,9 @@ func main() {
 
 	handler := c.Handler(router)
 	port := os.Getenv("PORT")
-
+	if port == "" {
+		port = "8080"
+	}
 	log.Fatal(http.ListenAndServe(":"+port, handler))
 
 }
