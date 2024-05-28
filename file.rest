@@ -1,0 +1,11 @@
+
+
+POST http://localhost:8080/send-email
+
+{"name":"asd","subject":"asda","body":"sd"}
+
+
+###
+POST https://frozen-lowlands-04435-a5bc50d88e2b.herokuapp.com/send-email
+
+{"name":"asd","subject":"asda","body":"sd"}

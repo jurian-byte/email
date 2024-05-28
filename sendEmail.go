@@ -20,8 +20,8 @@ type EmailRequest struct {
 }
 
 var (
-	host           = "smtp-mail.outlook.com"
-	port           = 587
+	host           = "smtp.gmail.com"
+	port           = 465
 	username       = ""
 	password       = ""
 	connectTimeout = 10 * time.Second
@@ -72,7 +72,8 @@ func handleSendEmail(w http.ResponseWriter, r *http.Request) {
 	client.Port = port
 	client.Username = username
 	client.Password = password
-	client.Encryption = mail.EncryptionSTARTTLS
+	//client.Encryption = mail.EncryptionSTARTTLS
+	client.Encryption = mail.EncryptionSSL
 	//client.Encryption = mail.EncryptionTLS
 	client.ConnectTimeout = connectTimeout
 	client.SendTimeout = sendTimeout
